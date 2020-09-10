@@ -1,0 +1,78 @@
+.Map_svg {
+	width: 70%;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	float: left;
+}
+
+.Map_title {
+	text-align: center;
+}
+
+.Map_legende {
+	width: 20%;
+}
+
+.Map_svg path {
+	stroke: #fff;
+	stroke-width: 0.6px;
+	transition: fill 0.3s;
+}
+
+path.region1 {
+	fill: rgb(247, 211, 167);
+}
+path.region1:hover {
+	fill: rgb(207, 173, 130);
+}
+
+path.region2 {
+	fill: rgb(252, 239, 197);
+}
+path.region2:hover {
+	fill: rgb(212, 200, 159);
+}
+
+path.region3 {
+	fill: rgb(242, 169, 153);
+}
+path.region3:hover {
+	fill: rgb(201, 132, 117);
+}
+path.region4 {
+	fill: rgb(187, 223, 175);
+}
+path.region4:hover {
+	fill: rgb(149, 184, 138);
+}
+path.region5 {
+	fill: rgb(171, 195, 235);
+}
+path.region5:hover {
+	fill: rgb(133, 157, 196);
+}
+path.region6 {
+	fill: rgb(247, 226, 159);
+}
+path.region6:hover {
+	fill: rgb(207, 187, 122);
+}
+path.region7 {
+	fill: rgb(192, 186, 229);
+}
+path.region7:hover {
+	fill: rgb(154, 149, 190);
+}
+path.region8 {
+	fill: rgb(171, 214, 214);
+}
+path.region8:hover {
+	fill: rgb(133, 176, 176);
+}
+path.region9 {
+	fill: rgb(133, 168, 139);
+}
+path.region9:hover {
+	fill: rgb(97, 131, 104);
+}

@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch, useParams } from 'react-router-dom';
+import Home from './HomePage';
+import Main from './Main';
+import Region from './Region';
+import County from './County';
+import Zone from './Zone';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { countyName } = useParams();
+	const { regionName } = useParams();
+	return (
+		<Switch>
+			<Route exact path="/" render={(routeProps) => <Home {...routeProps} />} />
+			<Route exact path="/map" render={(routeProps) => <Main {...routeProps} />} />
+			<Route exact path="/map/region/:regionName" render={(routeProps) => <Region {...routeProps} />} />
+			<Route exact path="/map/region/:regionName/prefecture/:countyName" render={(routeProps) => <County {...routeProps} />} />			
+			<Route exact path="/map/region/:regionName/prefecture/:countyTitle/:zoneName" render={(routeProps) => <Zone {...routeProps} />} />			
+		</Switch>
+	);
 }
 
 export default App;
