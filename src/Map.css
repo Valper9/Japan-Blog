@@ -6,6 +6,10 @@
 	float: left;
 }
 
+.Map_list_item {
+	border-radius: 8px;
+}
+
 .Map_title {
 	text-align: center;
 }

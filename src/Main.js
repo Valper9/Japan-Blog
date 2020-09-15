@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import NavBar from './Navbar';
 import './Main.css';
 import {Map} from './Map'
+import {counties, regions} from './dataLocal';
 
 function Main() {
-	const history = useHistory();		 
+	const history = useHistory();
+	const [currentZoneHover, setCurrentZoneHover] = useState("");
 	return (
 		<div className="Map">
 			<div>
@@ -31,19 +33,28 @@ function Main() {
 								onCountyClick={(county) => {
 									history.push(`/map/region/${county.region.toLowerCase()}/prefecture/${county.title.toLowerCase()}`);
 								}}
+								currentZoneHover={currentZoneHover}
 							/>
 						</div>						
 						<div className="Map_legende">
       						<ListGroup className="Map_List" variant='flush'>
-								<ListGroup.Item href="/map/region/hokkaidō" action style={{backgroundColor: "rgb(247, 211, 167)"}}>Hokkaidō</ListGroup.Item>
-								<ListGroup.Item href="/map/region/tōhoku" action  style={{backgroundColor: "rgb(252, 239, 197)"}}>Tōhoku</ListGroup.Item>
-								<ListGroup.Item href="/map/region/kantō" action style={{backgroundColor: "rgb(242, 169, 153)"}}>Kantō</ListGroup.Item>
-								<ListGroup.Item href="/map/region/chūbu" action style={{backgroundColor: "rgb(187, 223, 175)"}}>Chūbu</ListGroup.Item>
-								<ListGroup.Item href="/map/region/kansai" action style={{backgroundColor: "rgb(171, 195, 235)"}}>Kansai</ListGroup.Item>
-								<ListGroup.Item href="/map/region/chūgoku" action style={{backgroundColor: "rgb(247, 226, 159)"}}>Chūgoku</ListGroup.Item>
-								<ListGroup.Item href="/map/region/shikoku" action style={{backgroundColor: "rgb(192, 186, 229)"}}>Shikoku</ListGroup.Item>
-								<ListGroup.Item href="/map/region/kyūshū" action style={{backgroundColor: "rgb(171, 214, 214)"}}>Kyūshū</ListGroup.Item>
-								<ListGroup.Item href="/map/region/okinawa" action style={{backgroundColor: "rgb(133, 168, 139)"}}>Okinawa</ListGroup.Item>
+								  <ListGroup.Item disabled style={{backgroundColor: "rgb(201, 197, 185)"}}>Les régions du Japon</ListGroup.Item>
+								  {regions.map( (r) => (
+										<ListGroup.Item 
+										  className="Map_list_item" 
+										  key={r.id}
+										  onMouseOver={() => {
+											  let regionHover = counties.filter((c) => c.region === r.id)
+											  setCurrentZoneHover(regionHover);
+											  console.log(currentZoneHover);
+										  }} 
+										  href={`/map/region/${r.id.toLowerCase()}`} 
+										  action 
+										  style={{backgroundColor: r.color}}
+										>
+											{r.id}
+										</ListGroup.Item>
+									))}
 							</ListGroup>
         				</div>
 					</div>

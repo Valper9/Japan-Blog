@@ -1,54 +1,55 @@
-import React, {useState} from "react";
-import {OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, {useState, useRef} from "react";
+import {OverlayTrigger, Tooltip, Overlay } from 'react-bootstrap';
 import {counties} from './dataLocal';
 import "./Map.css";
 
 
-export const Map = ({ onCountyClick = () => {}, onCountyOver = () => {} }) => {
-  const [dialogueContent, setDialogueContent] = useState(false);
-  const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {dialogueContent}
-    </Tooltip>
-    );
+export const Map = ({ onCountyClick = () => {}, currentZoneHover }) => {
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState(null);
+  const ref = useRef(null);
 
+  const handleMouseOver = (event) => {
+    setShow(!show);
+    setTarget(event.target);
+  };
+  const [dialogueContent, setDialogueContent] = useState(false);
+   
   const onClick = (e) => {
     const { id } = e.currentTarget;
     const county = counties.find((c) => c.id === id)
     onCountyClick(county);
   };
-  const onMouseOver = (e) => {
-    const { id } = e.currentTarget;
-    const county = counties.find((c) => c.id === id)
-    onCountyOver(county)
+  const onMouseLeave= (e) => {
+    setShow(!show);
   }
   const pathProps = {
     onClick,
-    // onMouseOver
+    onMouseLeave,
      onMouseOver: (e) => {
        const { id } = e.currentTarget;
        const county = counties.find((c) => c.id === id)
        setDialogueContent(county.title);
-     },
+       handleMouseOver(e);
+     }
   };
   return (
     <div>
       <div className="Map_svg">
         
           <svg version="1.1" viewBox="16 0 435 475">
-        <g>
-          <OverlayTrigger
-            placement="right"
+          {/* <OverlayTrigger
+            placement="auto"
             delay={{ show: 250, hide: 400 }}
             overlay={renderTooltip}
-          >
+          > */}
+        <g>          
           <path
             {...pathProps}
             id="JP-01"
             className="region1"
             d="M344.04,71.29l2.76,-2.73l-4.03,-5.33l0.41,-3.02l1.64,0.11l1.34,-1.17l5.8,4.8l4.4,-1.19l-0.14,1.17l3.04,1.39l2.2,-1.22l2.96,-3.75l-1.86,-10.74l1.02,-2.1l4.26,-2.26l0.93,-1.89l0.06,-9.81l2.14,-3.76l0.72,-5.25l-1.07,-7.11l-3.28,-9.47l1.64,-3.22l-0.26,-2.67l1.27,1.45l1.76,-0.28L374.52,0l11.73,13.8l3.91,7.23l5.02,5.66l8.74,7.2l3.7,1.94l9.12,2.97l3.23,0.22l0.23,2.05l1.46,2.04l3.21,1.01l5.98,-0.12l7.83,-7.21l3,-3.96l0.45,2.23l-4.45,7.94L436.06,48l6.06,12.8l-2.49,-1.28l-0.03,1.63l0.86,-0.67l0.55,1.34l2.95,0.34l3.76,-3.51l3.28,0.2l-1.36,1.41l-3.61,1.33l-0.8,2.93l-2.01,-0.41l-5.47,1.2l-3.38,4.39l-1.9,-0.1l-1.09,-1.99l-1.92,1.83l1.12,1.54l-6.74,-0.48l-2.26,-1.42l-3.06,0.54l-5.82,3.71l-5.27,5.27l-4.08,5.8l-1.53,3.31l0.27,3.11l-1.72,7.01l-3.7,-3.72l-12.93,-6.47l-4.21,-3.72l-3.21,-0.94l-4.04,-3.24l-4.21,-0.57l-3.17,1.04l-6.35,4.45l-2.46,3.19l-1.4,-0.95l0.97,0.35l0.12,-0.81l-1.35,-0.41l-0.87,-2.37l-3.24,-3.33l-4.67,-0.12l-3.12,4.56l-0.43,4.49l5.06,3.55l4.17,-0.08l3.94,5.31l4.49,2.84l-4.32,2.59l-3.63,-1.7l-1.63,0.89l0.3,-1.74l-1.45,-0.3l-0.84,2.01l-3.07,1.49l-0.31,3.94l-3.3,1.38l-1.29,2.2l-3.06,-1.3l-1.16,-3.58l1.76,-5.86l1.05,-0.51l-0.09,-4.69l-1.9,-2.94l-1.97,-0.48l-1.39,-2.2l-1.14,-0.41l-0.58,-2.12l1.58,-3.1l-0.46,-4.88l0.92,-1.45l3.41,-0.68l2,-1.64l0.85,-1.92l1.39,1.54l0.89,-0.23L344.04,71.29zM358.76,9.86l-0.09,-1.23l1.28,-1.25l2.07,1.21l0.51,1.81l-1.81,1.49L358.76,9.86zM326.88,91.03l-0.29,2.22l-1.07,1.22l-0.97,-3.35l3.12,-1.99L326.88,91.03zM357.23,4.25l-0.65,2.72l-1.18,-5.35l0.65,0.85L357.03,2L357.23,4.25z"
           />
-          </OverlayTrigger>
           <path
             {...pathProps}
             id="JP-02"
@@ -326,8 +327,19 @@ export const Map = ({ onCountyClick = () => {}, onCountyOver = () => {} }) => {
             d="M96.19,466.71l3.32,-2.45l-1.74,-0.69l-0.34,-2.3l2.4,0.41l0.16,1.38l0.92,-0.11l3.5,-3.57l0.33,-1.59l1.17,0.59l0.39,2.04l-1.76,2.62l-1.76,0.03l0.08,1.38l-1.15,0.72l-1.15,-0.38l0.33,0.67l-2.04,1.83l-2.34,0.12l1.77,3l-1.67,-0.75l-1.32,2.79l1.22,0.76l-3.05,2.01l-0.79,-2.72l2.42,-2.38l-0.85,-2.74L96.19,466.71zM131.27,424.58l-1.1,1.43l-1.58,0.22l0.1,1.88l-1.89,1.34l0.21,1.01l-1.64,-0.93l-0.42,-1.37l-2.74,-0.96l1.8,-0.45l-0.2,-0.64l2.44,-1.48l3.28,-0.7l0.72,-1.42l1.55,-0.31l0.3,1.39l0.72,-1l-0.57,-0.93l0.89,-0.62l0.52,2.24L131.27,424.58zM19.83,512.37l-1.21,2.24l-4.28,-1.13l0.83,-0.91l0.79,0.63l0.64,-2.54L19.83,512.37zM118.99,436l1.33,2.09l-0.97,2.05l-1.03,0.19l-1.12,-1.37l-0.03,-2.47l0.42,-1.32l1.44,0.04L118.99,436zM24.36,510.41l1.06,-0.13l2.32,-3.23l-1.76,3.08l-0.19,2.5l-1.69,0.37l-0.86,-0.75l0.62,-1.04l-1.47,-0.38l0.97,-1.13L24.36,510.41zM45.7,503.79l0.63,0.09l-0.36,-3.53l1.39,2.55l2.31,1.46l-2.86,0.41L45.7,503.79zM112.24,446.9l-1.39,0.78l-0.71,-1.32l3.72,-1.12L112.24,446.9zM123.92,429.29l0.69,-0.34l1.74,1.25l-0.07,0.91l-2.48,0l-0.8,-2.47l0.69,-0.29L123.92,429.29zM75.6,469.71l-1.16,-1l1.45,-0.38l0.79,0.92l-0.24,1.2L75.6,469.71zM139.95,424.63l-1.2,1.87l-1.08,-0.15l0.05,-0.73L139.95,424.63zM43.46,502.47l0.52,-1.03l1.14,1.1L43.46,502.47zM98.87,453.97l1.4,-1.11l-2.06,2.28L98.87,453.97zM96.23,460.76l0.24,0.54l-1.55,-0.2L96.23,460.76zM98.63,455.89l0.05,0.99l-0.56,-0.59L98.63,455.89z"
           />
         </g>
+        {/* </OverlayTrigger> */}
       </svg>
-        
+        <Overlay
+          show={show}
+          target={target}
+          placement="right"
+          container={ref.current}
+          containerPadding={20}
+        >
+          <Tooltip id="tooltip" >
+            {dialogueContent}
+          </Tooltip> 
+        </Overlay>
       </div>
     </div>
   );
