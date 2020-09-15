@@ -1,27 +1,33 @@
-.Map {
-	text-align: center;
-	width: 100%;
-}
-
-.Map_Card {
-	display: inline-block;
-	padding: 50px;
-	width: 100%;
-
-}
-.Map_title {
-	padding-bottom: 25px;
+.Main_title {
+	padding:  20px 0 20px;
 	text-align: center;
 	color: #aa660e;
 }
-.Map_Card p {
-	text-align: center;
-}
-.Map_map{
-	display:flex;
-}
-.Map_legende {
-	float: right;
-	margin: auto;
+
+.Main_map{
+	width: 100%;
 }
 
+.Main_map_svg {
+	width: 70%;
+}
+
+.Main_map_legende {
+	padding-bottom: 20px;
+}
+
+.Main_list {
+	width: 20%;
+}
+
+.Main_list_title {
+	margin-top: 50px;
+}
+
+.Main_list_item {
+	margin: 1px 0 1px;
+}
+
+/* .Map_list_item {
+	border-radius: 8px;
+} */
