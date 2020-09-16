@@ -1,7 +1,10 @@
+
+
 .Map_svg path {
 	stroke: #fff;
 	stroke-width: 0.6px;
 	transition: fill 0.3s;
+	cursor: pointer;
 }
 
 path.region1 {

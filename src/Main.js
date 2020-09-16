@@ -14,14 +14,14 @@ function Main() {
 			<div>
 				<NavBar />
 			</div>
-			<div className="container"  style={{backgroundColor:"white"}}>
+			<div className="" >
 				<div className="Main_body text-center">				
 					<h1 className="display-4 Main_title">La carte du Japon</h1>			
 					<p>Cliquez sur la carte pour aller voir ce qu'il y a à découvrir !</p>
 					<hr style={{width:"60%"}}/>
 				</div>
-				<div className="container Main_map" >
-					<div className="Main_map_svg" >						
+				<div className="d-flex Main_map" >
+					<div className="Main_map_svg " >						
 						<Map
 							onCountyClick={(county) => {
 								history.push(`/map/region/${county.region.toLowerCase()}/prefecture/${county.title.toLowerCase()}`);
@@ -29,12 +29,12 @@ function Main() {
 							currentZoneHover={currentZoneHover}
 						/>
 					</div>						
-					<div className="Main_map_legende">
+					<div className="Main_map_legende text-center d-flex justify-content-center">
       					<ListGroup className="Main_list" variant='flush'>
-						  <ListGroup.Item className="Main_list_title rounded-pill" disabled style={{backgroundColor: "rgb(201, 197, 185)"}}>Les régions du Japon</ListGroup.Item>
+						  <ListGroup.Item className="Main_list_title" disabled style={{backgroundColor: "rgb(201, 197, 185)"}} >Les régions du Japon</ListGroup.Item>
 								{regions.map( (r) => (
 									<ListGroup.Item
-										className="Main_list_item rounded-pill " 
+										className="Main_list_item " 
 										key={r.id}
 										onMouseOver={() => {
 											let regionHover = counties.filter((c) => c.region === r.id)

@@ -7,7 +7,7 @@ import "./Navbar.css";
 
 export default function NavBar(){
     return(
-    <div className="Navbar container">
+    <div className="Navbar">
             <Navbar className="Navbar" bg="light" expand="lg">
                 <Navbar.Brand href="/">Chez Mel'</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

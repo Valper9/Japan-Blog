@@ -17,7 +17,7 @@ export default function County () {
 				<div className="container" style={{backgroundColor: "white"}} >			
 					<div className="container mb-3 text-center">
 						<h1 className="display-1 p-3">{currentCounty.title}</h1>
-						<img src={currentCounty.img} alt={currentCounty.title} style={{width: "60%"}} />
+						<img src={currentCounty.imgCounty} alt={currentCounty.title} style={{width: "60%"}} />
 					</div>
 					<div className="container">
 						<CardDeck>

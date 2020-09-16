@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { Tooltip, Overlay } from 'react-bootstrap';
 import {counties} from './dataLocal';
 import "./Map.css";
@@ -14,6 +14,7 @@ export const Map = ({ onCountyClick = () => {}, currentZoneHover }) => {
     setTarget(event.target);
   };
   const [dialogueContent, setDialogueContent] = useState(false);
+  const [isIncludesCurrentZoneHover, setisIncludesCurrentZoneHover] = useState(false);
    
   const onClick = (e) => {
     const { id } = e.currentTarget;
@@ -33,9 +34,17 @@ export const Map = ({ onCountyClick = () => {}, currentZoneHover }) => {
        handleMouseOver(e);
      }
   };
+  const isCurrentZoneHover = (id) => {
+    const county = counties.find((c) => c.id === id)
+    console.log(county);
+  }
+  useEffect(() => {
+    isCurrentZoneHover();
+    console.log(currentZoneHover);
+  }, [currentZoneHover]);
   return (
     <div>
-      <div>      
+      <div className="Map_svg">      
         <svg version="1.1" viewBox="16 0 435 475">
           <g>          
           <path
@@ -47,7 +56,8 @@ export const Map = ({ onCountyClick = () => {}, currentZoneHover }) => {
           <path
             {...pathProps}
             id="JP-02"
-            className="region2"
+            className="{currentZoneHover.includes(county.id)}"
+              //fct qui trouve le path et stocké dans var pour utilisé dans le includes ? console.log("akiki") : "region2"}
             d="M358.65,125.37l1.5,-1.88l1.39,-5.44l-1.58,-3.1l-0.79,-0.08l-1.98,2.42l-1.52,-0.42l-3.33,1.86l-0.93,-0.47l0.69,-4.59l2.24,-5.89l6.95,5.01l1.89,-0.26l2.04,-1.67l-1.49,6.85l0.45,10.64l1.37,4.86l1.18,1.09l0.67,-0.39l2.14,2.44l0,0l-2.87,2.68l-1.24,-0.77l-2.39,1.19l-0.68,-1.08l-5.73,3.89l-1.4,-0.69l0,0l0.49,-4.64l-2.13,0.23l0.16,-2.35l-1.23,0.49l-0.24,1.08l-2.98,1.19l-1.25,-0.84l-1,0.84l-2.22,-2.03l-1.31,0.11l-0.5,1l-4.5,0.06l-0.76,-0.81l-1.03,1.22l-1.64,-0.24l0,0l0.07,-3.22l-1.56,-1.63l3.45,-3.65l1.84,0.44l2.66,-1.78l1.09,-7.4l-1.38,-0.82l1.43,-0.59l0.4,-2.95l2.39,2.04l1.67,-1.2l1.75,1.1l0.28,4.79l1.65,4.47l1.33,-0.11l1.19,-1.28l0.33,-3.25L358.65,125.37z"
           />
           <path

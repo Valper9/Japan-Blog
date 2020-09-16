@@ -12,7 +12,7 @@ export default function Zone() {
             <div>
                 <Navbar />
             </div>
-            <div className="container">
+            <div className="container text-justify" style={{backgroundColor: "white"}}>
                 <h1 className="display-1">{currentZone.name}</h1> 
                 <span>{currentZone.blog.time}</span>
                 <p>{currentZone.blog.p1}</p>
