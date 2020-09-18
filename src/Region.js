@@ -5,6 +5,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import {Button} from 'react-bootstrap';
 import {regions} from './dataLocal';
 import NavBar from './Navbar';
+import "./Region.css";
 
 export default function Region () {
     const {regionName} = useParams();
@@ -17,7 +18,9 @@ export default function Region () {
                 <div className="container" style={{backgroundColor:"white"}}>
                     <div className="mb-3 d-flex flex-column" style={{width:"100%"}} >
                         <h1 className="display-1 text-center">{currentRegion.id}</h1>
-                        <img style={{margin:"auto"}} src={currentRegion.imgRegion} alt={currentRegion.id}/>
+                        <div className="Region_imgContainer text-center">
+                            <img className="Region_img" src={currentRegion.imgRegion} alt={currentRegion.id}/>
+                        </div>
                     </div>
                     <div>
                         <CardDeck>

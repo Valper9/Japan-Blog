@@ -1,0 +1,11 @@
+.Region_imgContainer {
+    width: 100%;
+    height: 900px;
+}
+
+.Region_img {
+    margin: auto;
+    width: 70%;
+    height: 100%;
+}
+
