@@ -83,7 +83,7 @@ export const counties = [
     { id: "JP-11", title: "Saitama", region: "Kantō", zones: [{zone: ""}], imgCounty: imagesCounties.saitama },
     { id: "JP-12", title: "Chiba", region: "Kantō", zones: [{zone: ""}], imgCounty: imagesCounties.chiba },
     { id: "JP-13", title: "Tokyo", region: "Kantō", zones: [{zone: ""}], imgCounty: imagesCounties.tokyo },
-    { id: "JP-14", title: "Kanagawa", region: "Kantō", zones: [{zone: "Atsugi", img:"", blog:"caca"}, {zone: "Yokohama", img:""}, {zone: "Fujisawa", img:""}, {zone: "Hakone", img:""}, {zone: "Atami", img:""}, {zone: "Izu", img:""}, {zone: "Kamakura", img:""}, {zone: "Odawara", img:""}, {zone: "Yugawara", img:""}, {zone: "Kawasaki", img:""}], imgCounty: imagesCounties.kanagawa},
+    { id: "JP-14", title: "Kanagawa", region: "Kantō", zones: [{zone: "Atsugi", img:"", blog:"caca"}, {zone: "Yokohama", img:"", blog: ""}, {zone: "Fujisawa", img:""}, {zone: "Hakone", img:""}, {zone: "Atami", img:""}, {zone: "Izu", img:""}, {zone: "Kamakura", img:""}, {zone: "Odawara", img:""}, {zone: "Yugawara", img:""}, {zone: "Kawasaki", img:""}], imgCounty: imagesCounties.kanagawa},
     { id: "JP-15", title: "Niigata", region: "Chūbu", zones: [{zone: ""}], imgCounty: imagesCounties.niigata },
     { id: "JP-16", title: "Toyama", region: "Chūbu", zones: [{zone:"" }], imgCounty: imagesCounties.toyama},
     { id: "JP-17", title: "Ishikawa", region: "Chūbu", zones: [{zone: ""}], imgCounty: imagesCounties.ishikawa },
@@ -138,7 +138,6 @@ export const counties = [
     
     p8: "Restaurant: かんき楼"
 }
-
 
   export const zones = [
       {prefecture: "Kanagawa", name: "Atsugi", img: "", blog: blogZone},

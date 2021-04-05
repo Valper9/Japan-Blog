@@ -5,6 +5,8 @@ import {zones} from './dataLocal';
 
 export default function Zone() {
     const {zoneName} = useParams();
+    const {regionName} = useParams();
+    const {countyName} = useParams();
     const objZone = zones.find((z) => z.name.toLowerCase() === zoneName);
     const [currentZone, setCurrentZone] = useState(objZone);
     return (
@@ -23,7 +25,10 @@ export default function Zone() {
                 <p>{currentZone.blog.p6}</p>
                 <p>{currentZone.blog.p7}</p>
                 <p>{currentZone.blog.p8}</p>
-            </div>                       
+            </div>   
+            <div>
+                <button href="/map/region/:regioName/prefecture/:countyName/:zoneName/form">Add a blog</button>
+            </div>                    
         </div>
     )
 }
