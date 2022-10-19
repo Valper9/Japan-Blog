@@ -6,28 +6,28 @@ import Region from './Region';
 import County from './County';
 import Zone from './Zone';
 import FormBlog from './FormBlog';
-import {MongoClient} from'mongodb';
+// import {MongoClient} from'mongodb';
 
-const uri = "mongodb+srv://val:simatnoght@japanblog.sjfqd.gcp.mongodb.net/japan?retryWrites=true&w=majority"
-connect();
+// const uri = "mongodb+srv://val:simatnoght@japanblog.sjfqd.gcp.mongodb.net/japan?retryWrites=true&w=majority"
+// connect();
 
-async function connect(){
+// async function connect(){
   	
-	const client = new MongoClient(uri, { useNewUrlParser: true }); 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
+// 	const client = new MongoClient(uri, { useNewUrlParser: true }); 
+//     try {
+//         // Connect to the MongoDB cluster
+//         await client.connect();
  
-        // Make the appropriate DB calls
-		const db =  client.db("japan");
-		console.log(`Connect to database ${db.databaseName}`);
+//         // Make the appropriate DB calls
+// 		const db =  client.db("japan");
+// 		console.log(`Connect to database ${db.databaseName}`);
 		  
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
+//     } catch (e) {
+//         console.error(e);
+//     } finally {
+//         await client.close();
+//     }
+// }
 
 function App() {
 	const { countyName } = useParams();
